@@ -2,9 +2,10 @@ import {
     useJsApiLoader,
     GoogleMap,
     Marker,
-    DirectionsRenderer,
 } from '@react-google-maps/api';
-import { useRef, useState } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { getBrowserLocation } from '../utils/geo';
 import { defaultTheme } from './Theme';
 
 export const Map = () => {
@@ -14,16 +15,11 @@ export const Map = () => {
         libraries: ['places'],
     })
 
-    const [map, setMap] = useState(/** @type google.maps.Map */(null))
-    const [directionsResponse, setDirectionsResponse] = useState(null)
-    const [distance, setDistance] = useState('')
-    const [duration, setDuration] = useState('')
+    const center = { lat: 36.656010, lng: 29.125247 };
 
-    /** @type React.MutableRefObject<HTMLInputElement> */
-    const originRef = useRef()
-    /** @type React.MutableRefObject<HTMLInputElement> */
-    const destiantionRef = useRef()
-
+    const [location, setLocation] = useState(center);
+    const [map, setMap] = useState((null));
+    
     const FETIYE_BOUNDS = {
         north: 36.716476,
         south: 36.602434,
@@ -43,10 +39,13 @@ export const Map = () => {
         styles: defaultTheme,
     };
 
-    const center = { lat: 36.656010, lng: 29.125247 };
+    useEffect(() => {
+        getBrowserLocation().then((currentLocation) => {
+            setLocation(currentLocation);
+        })
+    }, []);
 
     return (
-
     <GoogleMap
         center={center}
         zoom={13}
@@ -54,10 +53,7 @@ export const Map = () => {
         options={defaultOptions}
         onLoad={map => setMap(map)}
     >
-        <Marker position={center} />
-        {directionsResponse && (
-            <DirectionsRenderer directions={directionsResponse} />
-        )}
+        <Marker position={location} />
     </GoogleMap>
     )
 }
