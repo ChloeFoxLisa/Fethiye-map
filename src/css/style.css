@@ -18,6 +18,14 @@ body {
   width: 100%;
 }
 
+.loader {
+  background-image: url(./../imgs/loader.gif);
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
 .header {
   height: 80px;
   background-color: #900;

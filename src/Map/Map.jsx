@@ -2,24 +2,25 @@ import {
     useJsApiLoader,
     GoogleMap,
     Marker,
+    LoadScript,
 } from '@react-google-maps/api';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { getBrowserLocation } from '../utils/geo';
 import { defaultTheme } from './Theme';
+import loader from './../imgs/loader.gif'
 
 export const Map = () => {
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-        libraries: ['places'],
     })
 
     const center = { lat: 36.656010, lng: 29.125247 };
 
     const [location, setLocation] = useState(center);
     const [map, setMap] = useState((null));
-    
+
     const FETIYE_BOUNDS = {
         north: 36.716476,
         south: 36.602434,
@@ -45,15 +46,14 @@ export const Map = () => {
         })
     }, []);
 
-    return (
-    <GoogleMap
-        center={center}
-        zoom={13}
-        mapContainerStyle={{ width: '100%', height: '100%' }}
-        options={defaultOptions}
-        onLoad={map => setMap(map)}
-    >
-        <Marker position={location} />
-    </GoogleMap>
-    )
+    return !isLoaded ? (
+            <GoogleMap
+                center={center}
+                zoom={13}
+                mapContainerStyle={{ width: '100%', height: '100%' }}
+                options={defaultOptions}
+                onLoad={map => setMap(map)} >
+                <Marker position={location} />
+            </GoogleMap>
+    ) : <div className='loader'/>;
 }
