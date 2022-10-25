@@ -1,5 +1,9 @@
 import { Map } from './Map/Map'
 
+// go v lol
+
+const string = "go v lol"
+
 function App() {
 
   return (
