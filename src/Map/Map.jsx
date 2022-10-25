@@ -46,7 +46,7 @@ export const Map = () => {
         })
     }, []);
 
-    return !isLoaded ? (
+    return isLoaded ? (
             <GoogleMap
                 center={center}
                 zoom={13}
