@@ -9,6 +9,10 @@
 
     &__menu {
         background-color: brown;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
 
         &__title {
             color: white;

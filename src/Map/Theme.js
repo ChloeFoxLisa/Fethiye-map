@@ -153,6 +153,15 @@ export const defaultTheme = [
         ]
     },
     {
+        "featureType": "poi.park",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
         "featureType": "poi.place_of_worship",
         "elementType": "geometry.fill",
         "stylers": [
@@ -229,7 +238,7 @@ export const defaultTheme = [
         "elementType": "labels.text.fill",
         "stylers": [
             {
-                "visibility": "on"
+                "visibility": "off"
             }
         ]
     },
@@ -238,7 +247,7 @@ export const defaultTheme = [
         "elementType": "labels.icon",
         "stylers": [
             {
-                "visibility": "on"
+                "visibility": "off"
             }
         ]
     },
@@ -256,7 +265,7 @@ export const defaultTheme = [
         "elementType": "labels.text.fill",
         "stylers": [
             {
-                "visibility": "on"
+                "visibility": "off"
             }
         ]
     }
